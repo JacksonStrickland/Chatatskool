@@ -80,10 +80,11 @@
     const messageInput = document.getElementById('message-input');
     const sendBtn = document.getElementById('send-btn');
 
-    // Simulate receiving a message (incoming messages, replace with actual backend)
-    function simulateIncomingMessage(message) {
+    // Simulate receiving a message (real incoming messages would come from server)
+    function simulateIncomingMessage() {
+      const incomingMessage = "This is a message from the other person!";
       setTimeout(() => {
-        addMessage(`Reply: ${message}`, 'received'); // Simulated reply from "other user"
+        addMessage(incomingMessage, 'received'); // Display incoming message
       }, 1000);
     }
 
@@ -91,9 +92,9 @@
     function sendMessage() {
       const message = messageInput.value.trim();
       if (message) {
-        addMessage(message, 'sent'); // Add the user's message
-        simulateIncomingMessage(message); // Simulate an incoming reply after sending the message
-        messageInput.value = ''; // Clear the input
+        addMessage(message, 'sent'); // Display user's message
+        simulateIncomingMessage(); // Simulate incoming reply from other user
+        messageInput.value = ''; // Clear input after sending
       }
     }
 
@@ -113,9 +114,8 @@
       messageDiv.className = `message ${type}`;
       messageDiv.textContent = text;
       messageBox.appendChild(messageDiv);
-      messageBox.scrollTop = messageBox.scrollHeight; // Scroll to the bottom
+      messageBox.scrollTop = messageBox.scrollHeight; // Scroll to bottom of chat
     }
   </script>
 </body>
 </html>
-
