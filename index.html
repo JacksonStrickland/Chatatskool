@@ -86,7 +86,7 @@
       send: function (msg) {
         setTimeout(() => {
           if (this.onmessage) {
-            this.onmessage({ data: `Reply: ${msg}` });
+            this.onmessage({ data: `Reply: ${msg}` }); // Simulated reply
           }
         }, 1000);
       }
@@ -98,7 +98,7 @@
       if (message) {
         addMessage(message, 'sent'); // Add the user's message
         mockSocket.send(message); // Simulate sending the message to the server
-        messageInput.value = '';
+        messageInput.value = ''; // Clear the input
       }
     }
 
