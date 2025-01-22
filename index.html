@@ -80,24 +80,19 @@
     const messageInput = document.getElementById('message-input');
     const sendBtn = document.getElementById('send-btn');
 
-    // Mock backend (replace with actual server in production)
-    const mockSocket = {
-      onmessage: null,
-      send: function (msg) {
-        setTimeout(() => {
-          if (this.onmessage) {
-            this.onmessage({ data: `Reply: ${msg}` }); // Simulated reply
-          }
-        }, 1000);
-      }
-    };
+    // Simulate receiving a message (incoming messages, replace with actual backend)
+    function simulateIncomingMessage(message) {
+      setTimeout(() => {
+        addMessage(`Reply: ${message}`, 'received'); // Simulated reply from "other user"
+      }, 1000);
+    }
 
     // Function to handle sending messages
     function sendMessage() {
       const message = messageInput.value.trim();
       if (message) {
         addMessage(message, 'sent'); // Add the user's message
-        mockSocket.send(message); // Simulate sending the message to the server
+        simulateIncomingMessage(message); // Simulate an incoming reply after sending the message
         messageInput.value = ''; // Clear the input
       }
     }
@@ -112,11 +107,6 @@
       }
     });
 
-    // Simulate receiving a message
-    mockSocket.onmessage = (event) => {
-      addMessage(event.data, 'received');
-    };
-
     // Function to add a message to the chat box
     function addMessage(text, type) {
       const messageDiv = document.createElement('div');
@@ -128,3 +118,4 @@
   </script>
 </body>
 </html>
+
